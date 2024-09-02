@@ -1,0 +1,28 @@
+{% extends "s3gui/templates/base.html" %}
+
+{% block content %}
+<table width="100%">
+    <tr>
+        <th style="text-align: left">Key</th>
+        <th style="text-align: left">Type</th>
+        <th style="text-align: left">Size</th>
+        <th style="text-align: left">Last Modified</th>
+    </tr>
+    {% for content in contents %}
+        <tr>
+            <td>
+                <a href="{{content.href}}">{{content.key}}</a>
+            </td>
+            <td>
+                <span>{{content.type}}</span>
+            </td>
+            <td>
+                <span>{{content.size}}</span>
+            </td>
+            <td>
+                <span>{{content.last_modified}}</span>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
