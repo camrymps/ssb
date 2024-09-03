@@ -7,9 +7,7 @@ from botocore.exceptions import ClientError
 import mimetypes
 
 s3_client = boto3_client(
-    "s3",
-    aws_access_key_id="#",
-    aws_secret_access_key="#",
+    "s3"
 )
 
 def download_file(request):
@@ -68,6 +66,8 @@ def list_objects(request, path):
                         "last_modified": "-" if key_is_folder else content["LastModified"],
                     })
 
-    context = {"contents": outputs, "next_token": next_token}
+    previous = "/".join(current_path.split("/")[0:-2])
+
+    context = {"contents": outputs, "previous_page_href": previous if previous != "/bucket" else None, "next_token": next_token}
 
     return render(request, "buckets/templates/list_objects.html", context)

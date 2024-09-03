@@ -1,6 +1,12 @@
 {% extends "s3gui/templates/base.html" %}
 
 {% block content %}
+{% if previous_page_href %}
+<div>
+    <a href="{{ previous_page_href }}"><< Previous</a>
+</div>
+<br />
+{% endif %}
 <table width="100%">
     <tr>
         <th style="text-align: left">Key</th>
